@@ -21,6 +21,5 @@ export class PersonController {
     return this.personService.getAllPersons();
   }
 
-
+ 
 }
-

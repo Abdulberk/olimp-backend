@@ -60,7 +60,7 @@ export class TransactionService {
         return {
           processedIn: `${timeTaken}ms`,
           ...transaction,
-        }
+        };
       },
     );
   }
@@ -205,5 +205,16 @@ export class TransactionService {
 
   findOne(id: number) {
     return `This action returns a #${id} transaction`;
+  }
+
+  async getUsersRecentTransactions(personId: number): Promise<Transaction[]> {
+    return this.transactionRepository
+      .createQueryBuilder('transaction')
+      .leftJoinAndSelect('transaction.receivers', 'receivers')
+      .leftJoinAndSelect('transaction.sender', 'sender')
+      .where('sender.id = :personId', { personId })
+      .orderBy('transaction.createdAt', 'DESC')
+      .take(5)
+      .getMany();
   }
 }

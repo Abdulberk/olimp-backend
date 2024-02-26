@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Person } from './entities/person.entity';
 import { Bank } from 'src/bank/entities/bank.entity';
 import { NotFoundException } from '@nestjs/common';
+import { Transaction } from 'src/transaction/entities/transaction.entity';
 @Injectable()
 export class PersonService {
   constructor(

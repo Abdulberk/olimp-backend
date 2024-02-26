@@ -20,4 +20,11 @@ export class TransactionController {
   findOne(@Param('id') id: string) {
     return this.transactionService.findOne(+id);
   }
+
+  @Get('recent-transactions/:id')
+  getRecentTransactions(@Param('id') id: number) {
+    return this.transactionService.getUsersRecentTransactions(+id);
+  }
 }
+
+
